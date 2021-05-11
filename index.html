@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <title>Scrollama guide</title>
 
-    <!-- бібліотека leaflet для карти. Тут і нижче ви можете прибрати блоки з картою, вони наведені в якості прикладу, і замість них використовуйте потрібну вам графіку -->
+    <!-- Бібліотека leaflet для карти. 
+        Тут і нижче ви можете прибрати блоки з картою, 
+        вони наведені в якості прикладу, 
+        використовуйте замість них потрібну вам графіку -->
+
     <link rel="stylesheet" href="leaflet.css"/>
-    <script src="leaflet.js"></script>
+    <script type="text/javascript" src="leaflet.js"></script>
 
 
-    <!-- бібліотека для скролітелінгу -->
-    <script src="scrollama.min.js"></script>
+    <!-- Бібліотека для скролітелінгу -->
+    <script type="text/javascript" src="scrollama.min.js"></script>
 </head>
 <style>
 
-/* налаштування карти */
+/* Налаштування карти */
 #map-wrapper {
   width: 100%;
   height: 100%;
@@ -35,7 +38,7 @@
 
 
 
-/* налаштування для скролітелінгу */
+/* Налаштування для скролітелінгу */
 #scroll {
   position: relative;
   width: 100%;  
@@ -79,18 +82,16 @@
     font-weight: bold;
     color: #CE4066;
 }
-
 </style>
 <body>
     <section id='scroll'>
         <!-- графіка -->
         <div class='scroll__graphic sticky'>  
 
-            <!--блок з картою, тут може бути потрібна вам графіка -->
+            <!--блок з картою -->
             <div id="map-wrapper">
                 <div id="map"></div>
             </div>  
-
 
         </div>
     
@@ -126,9 +127,8 @@
 
     
 
-    <script>
-
-    /* скрипт для відображення карти */
+    <script type="text/javascript">
+    /* код для відображення карти */
     var map = L.map('map').setView([49.418, 27.015], 13);
 
     L.tileLayer(        
@@ -142,7 +142,7 @@
 
 
 
-    /* скрипт для налаштування скролітелінгу */
+    /* код для налаштування скролітелінгу */
 
     var container = document.querySelector('#scroll');
     var graphic = container.querySelector('.scroll__graphic');
