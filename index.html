@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>Scrollama guide</title>
+
+    <!-- бібліотека leaflet для карти. Тут і нижче ви можете прибрати блоки з картою, вони наведені в якості прикладу, і замість них використовуйте потрібну вам графіку -->
+    <link rel="stylesheet" href="leaflet.css"/>
+    <script src="leaflet.js"></script>
+
+
+    <!-- бібліотека для скролітелінгу -->
+    <script src="scrollama.min.js"></script>
+</head>
+<style>
+
+/* налаштування карти */
+#map-wrapper {
+  width: 100%;
+  height: 100%;
+  position:relative;
+}
+
+#map { 
+    position:absolute; 
+    top:0; 
+    bottom:0; 
+    width:100%; 
+    height: 100vh;
+} /* кінець блоку для карти */
+
+
+
+/* налаштування для скролітелінгу */
+#scroll {
+  position: relative;
+  width: 100%;  
+  display: grid;
+  grid-template-columns: 45% auto;
+}
+
+.scroll__graphic {
+  width: 100% !important;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;  
+  grid-column: 1/3;
+  max-height: 100vh;
+  z-index: 10;
+}
+
+.scroll__text {
+  grid-column: 2/3;
+  z-index: 100;
+}
+
+.scroll__text .step {
+    width: 60%;
+    margin: 0 auto 20vh auto;
+    min-height: 100vh;
+    max-height: max-content; 
+}
+
+
+/*  опційні налаштування стилів тексту */
+.scroll__text .step div {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.scroll__text .step div p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #CE4066;
+}
+
+</style>
+<body>
+    <section id='scroll'>
+        <!-- графіка -->
+        <div class='scroll__graphic sticky'>  
+
+            <!--блок з картою, тут може бути потрібна вам графіка -->
+            <div id="map-wrapper">
+                <div id="map"></div>
+            </div>  
+
+
+        </div>
+    
+        <!-- текстовий блок -->
+        <div class='scroll__text'>
+            <div class='step' data-step='0'>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras interdum et metus vel pharetra. Integer id odio est. Phasellus est lorem, viverra ac bibendum eget, condimentum nec mauris. Donec gravida suscipit velit a laoreet. Donec ante tortor, sodales et ante at, ullamcorper varius elit. Proin in diam eu ipsum tincidunt mollis convallis vel tortor. Donec maximus blandit magna. Proin in ligula quis quam vulputate vestibulum. Nullam diam nisi, malesuada a suscipit pharetra, congue id lectus. Sed congue felis non eleifend facilisis. Donec vulputate, leo id molestie finibus, lorem nibh rutrum odio, id pulvinar odio massa in lacus.</p>
+                </div>
+            </div>
+    
+            <div class='step' data-step='1'>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras interdum et metus vel pharetra. Integer id odio est. Phasellus est lorem, viverra ac bibendum eget, condimentum nec mauris. Donec gravida suscipit velit a laoreet. Donec ante tortor, sodales et ante at, ullamcorper varius elit. Proin in diam eu ipsum tincidunt mollis convallis vel tortor. Donec maximus blandit magna. Proin in ligula quis quam vulputate vestibulum. Nullam diam nisi, malesuada a suscipit pharetra, congue id lectus. Sed congue felis non eleifend facilisis. Donec vulputate, leo id molestie finibus, lorem nibh rutrum odio, id pulvinar odio massa in lacus.</p>
+                </div>
+            </div>
+
+            <div class='step' data-step='2'>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras interdum et metus vel pharetra. Integer id odio est. Phasellus est lorem, viverra ac bibendum eget, condimentum nec mauris. Donec gravida suscipit velit a laoreet. Donec ante tortor, sodales et ante at, ullamcorper varius elit. Proin in diam eu ipsum tincidunt mollis convallis vel tortor. Donec maximus blandit magna. Proin in ligula quis quam vulputate vestibulum. Nullam diam nisi, malesuada a suscipit pharetra, congue id lectus. Sed congue felis non eleifend facilisis. Donec vulputate, leo id molestie finibus, lorem nibh rutrum odio, id pulvinar odio massa in lacus.</p>
+                </div>
+            </div>
+
+            <div class='step' data-step='3'>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras interdum et metus vel pharetra. Integer id odio est. Phasellus est lorem, viverra ac bibendum eget, condimentum nec mauris. Donec gravida suscipit velit a laoreet. Donec ante tortor, sodales et ante at, ullamcorper varius elit. Proin in diam eu ipsum tincidunt mollis convallis vel tortor. Donec maximus blandit magna. Proin in ligula quis quam vulputate vestibulum. Nullam diam nisi, malesuada a suscipit pharetra, congue id lectus. Sed congue felis non eleifend facilisis. Donec vulputate, leo id molestie finibus, lorem nibh rutrum odio, id pulvinar odio massa in lacus.</p>
+                </div>
+            </div>
+    
+                
+        </div>
+    </section>
+
+    
+
+    <script>
+
+    /* скрипт для відображення карти */
+    var map = L.map('map').setView([49.418, 27.015], 13);
+
+    L.tileLayer(        
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '',
+            maxZoom: 19,
+            ext: 'png'
+        }).addTo(map);
+
+    map.scrollWheelZoom.disable();   
+
+
+
+    /* скрипт для налаштування скролітелінгу */
+
+    var container = document.querySelector('#scroll');
+    var graphic = container.querySelector('.scroll__graphic');
+    var text = container.querySelector('.scroll__text');
+    var step = text.querySelectorAll('.step');
+    var scroller = scrollama();
+   
+
+    function handleStepEnter(r) {
+        console.log(r.index);
+        console.log(r.direction);
+        if (r.index === 0 ) {
+            console.log('крок 1')
+
+            //Тут можна запускати наперед підготовлені функції
+            map.flyTo([49.418, 27.015], 13);       
+        }
+
+        if (r.index === 1 && r.direction == "up" ) {
+            console.log('крок 2 / up')
+           
+            map.flyTo([49.418, 27.015], 11);       
+        }
+        if (r.index === 1 && r.direction == "down" ) {
+            console.log('крок 2 / down')
+
+            map.flyTo([49.418, 27.015], 11);    
+        }
+        if (r.index === 2 ) {
+            map.flyTo([49.85, 24.1], 11);
+        }
+
+        if (r.index === 3 ) {
+            map.flyTo([49.85, 24.1], 13);
+        }
+    }
+
+ 
+    scroller.setup({
+        container: '#scroll',
+        graphic: '.scroll__graphic',
+        text: '.scroll__text',
+        step: '.scroll__text .step'
+    })
+    .onStepEnter(handleStepEnter)     
+
+    window.addEventListener("resize", scroller.resize);
+
+        
+    </script>
+
+
+
+</body>
+</html>
